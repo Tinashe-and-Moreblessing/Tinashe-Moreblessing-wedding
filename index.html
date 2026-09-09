@@ -12,6 +12,11 @@
 html{scroll-behavior:smooth;background:var(--navy)}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
 section{position:relative;overflow:hidden}
+/* FLORAL EDITORIAL TREATMENT — subtle on every page */
+section:not(.opening):not(.final)::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("final-florals.jpg"),url("final-florals.jpg");background-repeat:no-repeat;background-position:top right,bottom left;background-size:300px auto,360px auto;opacity:.12;mix-blend-mode:multiply}
+section:not(.opening):not(.final)>*{position:relative;z-index:1}
+.verse::before,.gifts::before{mix-blend-mode:screen;opacity:.13}
+.opening::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("final-florals.jpg"),url("final-florals.jpg");background-repeat:no-repeat;background-position:top right,bottom left;background-size:270px auto,320px auto;opacity:.16;filter:saturate(.9)}
 .serif{font-family:Georgia,"Times New Roman",serif}
 .script{font-family:"Brush Script MT","Segoe Script",cursive}
 .content{width:min(1080px,100%);margin:auto;padding:92px 22px}
@@ -105,7 +110,7 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
 
 <section class="gifts"><div class="content center reveal"><div class="label">A note on gifts</div><h2>Presents are welcome in monetary form only.</h2></div></section>
 
-<section class="rsvp" id="rsvp"><div class="content center reveal"><div class="label">Kindly respond</div><h2>We would love to celebrate with you</h2><p>Kindly confirm your attendance with us.</p><div class="rsvp-actions"><a class="btn" id="rsvpYes" href="#">Yes, I’ll be there</a><a class="btn secondary" id="rsvpNo" href="#">Sorry, I can’t make it</a></div><div class="no-children">STRICTLY NO CHILDREN</div></div></section>
+<section class="rsvp" id="rsvp"><div class="content center reveal"><div class="label">Kindly respond</div><h2>We would love to celebrate with you</h2><p>Kindly confirm your attendance with us by <strong>30 October 2026</strong>.</p><div class="rsvp-actions"><a class="btn" id="rsvpYes" href="#">Yes, I’ll be there</a><a class="btn secondary" id="rsvpNo" href="#">Sorry, I can’t make it</a></div><div class="no-children">STRICTLY NO CHILDREN</div></div></section>
 
 <section class="final"><div class="closing reveal">
   <div class="label">The countdown begins</div>
@@ -151,6 +156,7 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
     var sections=Array.prototype.slice.call(document.querySelectorAll('body > section')).slice(1);
     var autoIndex=0;
     function stopAuto(){if(autoStarted){userTookControl=true;if(autoTimer)window.clearTimeout(autoTimer);}}
+    function isEnterTarget(target){return target===enter || (enter && enter.contains(target));}
     if(enter){
       enter.addEventListener('click',function(){
         if(music){music.volume=.16;try{var p=music.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
@@ -167,9 +173,11 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
         autoTimer=window.setTimeout(advance,7000);
       },{passive:false});
     }
-    ['wheel','pointerdown','keydown'].forEach(function(evt){window.addEventListener(evt,stopAuto,{passive:true});});
+    window.addEventListener('wheel',function(e){if(autoStarted)stopAuto();},{passive:true});
+    window.addEventListener('pointerdown',function(e){if(autoStarted && !isEnterTarget(e.target))stopAuto();},{passive:true});
+    window.addEventListener('keydown',function(e){if(autoStarted)stopAuto();},{passive:true});
     window.addEventListener('touchstart',function(e){
-      if(autoStarted && e.target!==enter && !enter.contains(e.target)) stopAuto();
+      if(autoStarted && !isEnterTarget(e.target)) stopAuto();
     },{passive:true});
 
     var target=new Date('2026-12-19T09:00:00-05:00').getTime();
