@@ -12,11 +12,16 @@
 html{scroll-behavior:smooth;background:var(--navy)}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
 section{position:relative;overflow:hidden}
-/* FLORAL EDITORIAL TREATMENT — subtle on every page */
-section:not(.opening):not(.final)::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("final-florals.jpg"),url("final-florals.jpg");background-repeat:no-repeat;background-position:top right,bottom left;background-size:300px auto,360px auto;opacity:.12;mix-blend-mode:multiply}
+/* VISIBLE FLORAL EDITORIAL TREATMENT — blush roses + greenery on every section */
+section:not(.opening):not(.final){isolation:isolate}
+section:not(.opening):not(.final)::before,
+section:not(.opening):not(.final)::after{content:"";position:absolute;pointer-events:none;z-index:0;background-repeat:no-repeat;background-size:360px auto;opacity:.42}
+section:not(.opening):not(.final)::before{inset:0 auto auto 0;width:360px;height:330px;background-image:url("floral-overlay-mirror.png");background-position:top left;mix-blend-mode:multiply}
+section:not(.opening):not(.final)::after{inset:auto 0 0 auto;width:390px;height:360px;background-image:url("floral-overlay.png");background-position:bottom right;mix-blend-mode:multiply}
 section:not(.opening):not(.final)>*{position:relative;z-index:1}
-.verse::before,.gifts::before{mix-blend-mode:screen;opacity:.13}
-.opening::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("final-florals.jpg"),url("final-florals.jpg");background-repeat:no-repeat;background-position:top right,bottom left;background-size:270px auto,320px auto;opacity:.16;filter:saturate(.9)}
+.verse::before,.gifts::before{mix-blend-mode:screen;opacity:.34}
+.verse::after,.gifts::after{mix-blend-mode:screen;opacity:.34}
+.opening::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("floral-overlay-mirror.png"),url("floral-overlay.png");background-repeat:no-repeat;background-position:top left,bottom right;background-size:300px auto,330px auto;opacity:.38;filter:saturate(1.05)}
 .serif{font-family:Georgia,"Times New Roman",serif}
 .script{font-family:"Brush Script MT","Segoe Script",cursive}
 .content{width:min(1080px,100%);margin:auto;padding:92px 22px}
@@ -55,6 +60,16 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
 .rsvp{background:linear-gradient(140deg,#fff,#f4e9e7)}.rsvp p{color:#555e6d}.rsvp-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}.rsvp-actions .btn{margin-top:0;min-width:210px}.rsvp-note{margin-top:26px!important;font-size:.66rem!important;font-weight:700!important;letter-spacing:.14em!important;color:var(--navy)!important;text-transform:uppercase}.no-children{margin:28px auto 0;padding:14px 18px;border:1px solid #d8b2b5;background:rgba(255,255,255,.55);color:#172238;font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;max-width:480px}
 /* FINAL */
 .final{min-height:100svh;background:#050a12;color:white;display:grid;place-items:center;text-align:center;isolation:isolate}.final:before{content:"";position:absolute;inset:-10%;background-image:url("final-florals.jpg");background-size:cover;background-position:center bottom;filter:blur(2px);opacity:.42;z-index:-2;transform:scale(1.06)}.final:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,7,13,.9) 0%,rgba(3,8,15,.72) 48%,rgba(3,7,13,.9) 100%),radial-gradient(circle at center,rgba(217,169,174,.13),transparent 56%);z-index:-1}.closing{position:relative;z-index:2;width:min(900px,100%);padding:52px 24px 46px}.final .label{color:var(--blush2)}.final h2{color:white;font-size:clamp(2.7rem,8vw,5.4rem);max-width:850px;margin:14px auto 20px;line-height:.98;text-shadow:0 3px 25px rgba(0,0,0,.45)}.forever{font:italic 500 clamp(2rem,6vw,3.4rem) Georgia,"Times New Roman",serif;color:var(--blush2);margin:0 0 24px}.heartline{display:flex;align-items:center;justify-content:center;gap:18px;color:var(--blush2);margin:18px 0 22px}.heartline:before,.heartline:after{content:"";height:1px;width:90px;background:rgba(239,201,200,.75)}.heart{font-size:1.8rem;line-height:1}.countdown{display:flex;justify-content:center;gap:12px;margin:28px 0 24px;flex-wrap:wrap}.time{min-width:86px;padding:14px 10px 12px;border:1px solid rgba(217,169,174,.32);background:rgba(7,24,46,.82);border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.2)}.time b{display:block;font:500 2.45rem Georgia,"Times New Roman",serif;color:var(--blush2);line-height:1}.time small{text-transform:uppercase;font-size:.5rem;letter-spacing:.15em;color:#eef1f5}.thanks{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#f1f2f4;margin:22px auto 20px;max-width:620px}.signature{font:italic 500 1.75rem Georgia,"Times New Roman",serif;color:var(--blush2);line-height:1.2}.signature strong{font-style:normal;color:white;font-size:1.55rem}.footerline{margin-top:24px;color:var(--blush2);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase}
+/* SECTION NAVIGATION — simple for guests who are not used to scrolling */
+.scroll-control{position:relative;z-index:4;text-align:center;padding:4px 20px 26px;margin-top:-10px}
+.scroll-control a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-size:.58rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(7,24,46,.18);background:rgba(255,255,255,.82);padding:10px 17px;border-radius:999px;box-shadow:0 7px 22px rgba(7,24,46,.08)}
+.scroll-control a span{font-size:1rem;line-height:0;animation:scrollPulse 1.8s ease-in-out infinite}
+.verse .scroll-control a,.gifts .scroll-control a{color:white;background:rgba(7,24,46,.5);border-color:rgba(255,255,255,.3)}
+.opening .scroll-control{position:absolute;bottom:18px;left:0;right:0;margin:0}
+.final .scroll-control{padding-top:8px}
+.final .scroll-control a{color:white;background:rgba(7,24,46,.55);border-color:rgba(239,201,200,.4)}
+@keyframes scrollPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.scroll-control a span{animation:none}}
 /* REVEALS */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
 .music-note{position:fixed;bottom:12px;right:12px;z-index:10;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:white;background:rgba(7,24,46,.72);padding:7px 10px;border-radius:99px;opacity:.62}
@@ -74,7 +89,8 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
     <a class="tap" href="#welcome" id="enter">Tap to Open Invitation</a>
     <div class="tiny">Please tap to enter</div>
   </div>
-  <div class="scroll-hint">Tap to open • the invitation will guide you</div>
+  <div class="scroll-control"><a href="#welcome">Scroll down <span>↓</span></a></div>
+  <div class="scroll-hint">Tap to open • then use Scroll Down to continue</div>
 </section>
 
 <audio id="music" src="music.mp3" loop preload="none" playsinline></audio>
@@ -86,19 +102,19 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
   <p>We would love for you to be part of our special day as we celebrate the wedding of <strong>Tinashe Nitchell Muza &amp; Moreblessing Bomba.</strong></p>
   <p>Your presence would mean so much to us as we celebrate our love, share this beautiful moment with our loved ones, and begin this new chapter together.</p>
   <div class="seats" id="seats">We have reserved 2 seats in your honour.</div>
-</div></div></section>
+</div></div><div class="scroll-control"><a href="#verse">Scroll down <span>↓</span></a></div></section>
 
-<section class="verse"><div class="content reveal"><div class="label">A time for everything</div><h2>Ecclesiastes 3:1</h2><blockquote>“To every thing there is a season, and a time to every purpose under the heaven:”</blockquote><div class="cite">Ecclesiastes 3:1 · KJV</div></div></section>
+<section class="verse" id="verse"><div class="content reveal"><div class="label">A time for everything</div><h2>Ecclesiastes 3:1</h2><blockquote>“To every thing there is a season, and a time to every purpose under the heaven:”</blockquote><div class="cite">Ecclesiastes 3:1 · KJV</div></div><div class="scroll-control"><a href="#details">Scroll down <span>↓</span></a></div></section>
 
-<section class="details"><div class="content center reveal"><div class="label">The wedding</div><h2>Join us in celebration</h2><div class="detail-grid">
+<section class="details" id="details"><div class="content center reveal"><div class="label">The wedding</div><h2>Join us in celebration</h2><div class="detail-grid">
   <div class="detail"><strong>19 December</strong><span>2026</span></div>
   <div class="detail"><strong>9:00 AM</strong><span>Wedding commences</span></div>
   <div class="detail"><strong>Mount Pavilia</strong><span>1213, Mazowe, Zimbabwe</span></div>
-</div><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Mount+Pavilia+Venue%2C+1213%2C+Mazowe%2C+Zimbabwe" target="_blank" rel="noopener">Get Directions</a></div></section>
+</div><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Mount+Pavilia+Venue%2C+1213%2C+Mazowe%2C+Zimbabwe" target="_blank" rel="noopener">Get Directions</a></div><div class="scroll-control"><a href="#dress">Scroll down <span>↓</span></a></div></section>
 
-<section class="dress"><div class="content center reveal"><div class="label">Please dress accordingly</div><h2>Dress Code</h2><div class="swatches"><div class="sw">Black</div><div class="sw nude">Nude</div><div class="sw navy">Navy Blue</div></div><p class="dress-caption"><strong>Black</strong><span>•</span><strong>Nude</strong><span>•</span><strong>Navy Blue</strong></p></div></section>
+<section class="dress" id="dress"><div class="content center reveal"><div class="label">Please dress accordingly</div><h2>Dress Code</h2><div class="swatches"><div class="sw">Black</div><div class="sw nude">Nude</div><div class="sw navy">Navy Blue</div></div><p class="dress-caption"><strong>Black</strong><span>•</span><strong>Nude</strong><span>•</span><strong>Navy Blue</strong></p></div><div class="scroll-control"><a href="#moments">Scroll down <span>↓</span></a></div></section>
 
-<section><div class="content reveal"><div class="center"><div class="label">A few moments</div><h2>Our Moments</h2></div><div class="gallery">
+<section id="moments"><div class="content reveal"><div class="center"><div class="label">A few moments</div><h2>Our Moments</h2></div><div class="gallery">
   <div class="g1"><img src="couple2.jpeg" alt="Tinashe and Moreblessing" loading="lazy"></div>
   <div class="g2"><img src="moreblessing.jpeg" alt="Moreblessing" loading="lazy"></div>
   <div class="g3"><img src="tinashe.jpeg" alt="Tinashe" loading="lazy"></div>
@@ -106,13 +122,13 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
   <div class="g5"><img src="couple1.jpeg" alt="Tinashe and Moreblessing" loading="lazy"></div>
   <div class="g6"><img src="moreblessing2.jpeg" alt="Moreblessing" loading="lazy"></div>
   <div class="g7"><img src="hero.jpeg" alt="Tinashe and Moreblessing" loading="lazy"></div>
-</div></div></section>
+</div></div><div class="scroll-control"><a href="#gifts">Scroll down <span>↓</span></a></div></section>
 
-<section class="gifts"><div class="content center reveal"><div class="label">A note on gifts</div><h2>Presents are welcome in monetary form only.</h2></div></section>
+<section class="gifts" id="gifts"><div class="content center reveal"><div class="label">A note on gifts</div><h2>Presents are welcome in monetary form only.</h2></div><div class="scroll-control"><a href="#rsvp">Scroll down <span>↓</span></a></div></section>
 
-<section class="rsvp" id="rsvp"><div class="content center reveal"><div class="label">Kindly respond</div><h2>We would love to celebrate with you</h2><p>Kindly confirm your attendance with us by <strong>30 October 2026</strong>.</p><div class="rsvp-actions"><a class="btn" id="rsvpYes" href="#">Yes, I’ll be there</a><a class="btn secondary" id="rsvpNo" href="#">Sorry, I can’t make it</a></div><div class="no-children">STRICTLY NO CHILDREN</div></div></section>
+<section class="rsvp" id="rsvp"><div class="content center reveal"><div class="label">Kindly respond</div><h2>We would love to celebrate with you</h2><p>Kindly confirm your attendance with us by <strong>30 October 2026</strong>.</p><div class="rsvp-actions"><a class="btn" id="rsvpYes" href="#">Yes, I’ll be there</a><a class="btn secondary" id="rsvpNo" href="#">Sorry, I can’t make it</a></div><div class="no-children">STRICTLY NO CHILDREN</div></div><div class="scroll-control"><a href="#final">Scroll down <span>↓</span></a></div></section>
 
-<section class="final"><div class="closing reveal">
+<section class="final" id="final"><div class="closing reveal">
   <div class="label">The countdown begins</div>
   <div class="forever">Our Forever</div>
   <div class="heartline"><span class="heart">♡</span></div>
@@ -126,7 +142,7 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
   <div class="thanks">Thank you for being a part of our journey.</div>
   <div class="signature">With love,<br><strong>Tinashe &amp; Moreblessing</strong></div>
   <div class="footerline">Two families · One love · A brighter tomorrow</div>
-</div></section>
+</div><div class="scroll-control"><a href="#top">Back to top <span>↑</span></a></div></section>
 
 <div id="lightbox"><img id="lightboxImg" src="" alt=""></div>
 
@@ -156,12 +172,12 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
     var sections=Array.prototype.slice.call(document.querySelectorAll('body > section')).slice(1);
     var autoIndex=0;
     function stopAuto(){if(autoStarted){userTookControl=true;if(autoTimer)window.clearTimeout(autoTimer);}}
-    function isEnterTarget(target){return target===enter || (enter && enter.contains(target));}
+    function isEnterTarget(target){return target===enter || (enter && enter.contains(target)) || (target && target.closest && target.closest('.scroll-control'));}
     if(enter){
       enter.addEventListener('click',function(){
         if(music){music.volume=.16;try{var p=music.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
         window.setTimeout(function(){var w=document.getElementById('welcome');if(w)w.scrollIntoView({behavior:'smooth',block:'start'});},60);
-        userTookControl=false; autoStarted=true; autoIndex=0;
+        userTookControl=false; autoStarted=true; autoIndex=1;
         if(autoTimer)window.clearTimeout(autoTimer);
         function advance(){
           if(userTookControl)return;
