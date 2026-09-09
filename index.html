@@ -12,16 +12,6 @@
 html{scroll-behavior:smooth;background:var(--navy)}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
 section{position:relative;overflow:hidden}
-/* VISIBLE FLORAL EDITORIAL TREATMENT — blush roses + greenery on every section */
-section:not(.opening):not(.final){isolation:isolate}
-section:not(.opening):not(.final)::before,
-section:not(.opening):not(.final)::after{content:"";position:absolute;pointer-events:none;z-index:0;background-repeat:no-repeat;background-size:360px auto;opacity:.42}
-section:not(.opening):not(.final)::before{inset:0 auto auto 0;width:360px;height:330px;background-image:url("floral-overlay-mirror.png");background-position:top left;mix-blend-mode:multiply}
-section:not(.opening):not(.final)::after{inset:auto 0 0 auto;width:390px;height:360px;background-image:url("floral-overlay.png");background-position:bottom right;mix-blend-mode:multiply}
-section:not(.opening):not(.final)>*{position:relative;z-index:1}
-.verse::before,.gifts::before{mix-blend-mode:screen;opacity:.34}
-.verse::after,.gifts::after{mix-blend-mode:screen;opacity:.34}
-.opening::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("floral-overlay-mirror.png"),url("floral-overlay.png");background-repeat:no-repeat;background-position:top left,bottom right;background-size:300px auto,330px auto;opacity:.38;filter:saturate(1.05)}
 .serif{font-family:Georgia,"Times New Roman",serif}
 .script{font-family:"Brush Script MT","Segoe Script",cursive}
 .content{width:min(1080px,100%);margin:auto;padding:92px 22px}
