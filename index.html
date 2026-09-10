@@ -9,9 +9,10 @@
 <style>
 :root{--navy:#07182e;--navy2:#0d2745;--blush:#d9a9ae;--blush2:#efc9c8;--cream:#fbf7f4;--ink:#172238;--muted:#687181;--white:#fff}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--navy)}
-body{margin:0;background:var(--navy);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;background:url("hero.jpeg") center center/cover no-repeat;background-position:center center;z-index:0;pointer-events:none}
+html{scroll-behavior:smooth;background:#07182e}
+body{margin:0;background:transparent;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.fixed-hero-bg{position:fixed;inset:0;background-image:url("hero.jpeg");background-position:center center;background-size:cover;background-repeat:no-repeat;z-index:0;pointer-events:none}
+.fixed-hero-bg:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);pointer-events:none}
 
 section{position:relative;overflow:hidden}
 .flow-one{position:relative;z-index:1}
@@ -36,7 +37,7 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
 .tiny{font-size:.65rem;opacity:.7;margin-top:12px}
 .scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;color:white;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;opacity:.72;white-space:nowrap}
 /* WELCOME */
-.flow-one{position:relative;background:transparent;isolation:isolate;z-index:1}.flow-one:before{display:none}.flow-one>section,.flow-one>.music-note{position:relative;z-index:1}.welcome{background:transparent}.welcome-card{max-width:760px;margin:auto;text-align:center}.welcome-card p{font-size:.96rem;color:white;text-shadow:0 2px 12px rgba(0,0,0,.65)}.guest{font:500 clamp(2.1rem,6vw,3.8rem)/1.05 Georgia,"Times New Roman",serif;color:white;text-shadow:0 3px 18px rgba(0,0,0,.7);margin:25px 0}.seats{display:inline-block;margin-top:12px;padding:10px 17px;border:1px solid #ead7d8;color:var(--navy);border-radius:999px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+.flow-one{position:relative;background:transparent;z-index:1}.flow-one:before{display:none}.flow-one>section,.flow-one>.music-note{position:relative;z-index:1}.welcome{background:transparent}.welcome-card{max-width:760px;margin:auto;text-align:center}.welcome-card p{font-size:.96rem;color:white;text-shadow:0 2px 12px rgba(0,0,0,.65)}.guest{font:500 clamp(2.1rem,6vw,3.8rem)/1.05 Georgia,"Times New Roman",serif;color:white;text-shadow:0 3px 18px rgba(0,0,0,.7);margin:25px 0}.seats{display:inline-block;margin-top:12px;padding:10px 17px;border:1px solid #ead7d8;color:var(--navy);border-radius:999px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
 /* VERSE */
 .verse{background:rgba(7,24,46,.30);color:white;text-align:center}.verse h2{color:white}.verse blockquote{max-width:760px;margin:30px auto;font:italic 500 clamp(1.7rem,5vw,3rem)/1.2 Georgia,"Times New Roman",serif}.cite{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
 /* DETAILS */
@@ -74,6 +75,7 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
 </style>
 </head>
 <body>
+<div class="fixed-hero-bg" aria-hidden="true"></div>
 <div class="flow-one">
 <section class="opening" id="top">
   <img src="hero.jpeg" alt="Tinashe and Moreblessing" fetchpriority="high">
