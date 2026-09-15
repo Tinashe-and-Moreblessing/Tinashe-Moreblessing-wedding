@@ -96,7 +96,6 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
 <div class="music-note">♪ Mwari Wazadza</div>
 
 <section class="welcome" id="welcome"><div class="content"><div class="welcome-card reveal">
-  <div class="label">A personal invitation</div>
   <div class="guest" id="guest">Dear Mr &amp; Mrs Hwami,</div>
   <p>We would love for you to be part of our special day as we celebrate the wedding of <strong>Tinashe Nitchell Muza &amp; Moreblessing Bomba.</strong></p>
   <p>Your presence would mean so much to us as we celebrate our love, share this beautiful moment with our loved ones, and begin this new chapter together.</p>
@@ -154,12 +153,14 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
     var params=new URLSearchParams(window.location.search);
     var guest=params.get('guest');
     var seats=params.get('seats');
+    var inviteGuests={'weddinginviteMrandMrsMuza':'Mr & Mrs Muza'};
+    var displayGuest=inviteGuests[guest] || guest;
     var guestEl=document.getElementById('guest');
     var seatsEl=document.getElementById('seats');
-    if(guest && guestEl) guestEl.textContent='Dear '+guest+',';
+    if(displayGuest && guestEl) guestEl.textContent='Dear '+displayGuest+',';
     if(seats && seatsEl){var n=parseInt(seats,10);if(isFinite(n)&&n>0) seatsEl.textContent='We have reserved '+n+' seat'+(n===1?'':'s')+' in your honour.';}
 
-    var name=guest || 'Guest';
+    var name=displayGuest || 'Guest';
     var phone='263718092335';
     var yesText='Hello Tinashe & Moreblessing, I am '+name+'. I would like to confirm my attendance for your wedding on 19 December 2026.';
     var noText="Hello Tinashe & Moreblessing, I am "+name+". Unfortunately, I won't be able to attend your wedding on 19 December 2026. Wishing you both a beautiful wedding and a lifetime of happiness.";
