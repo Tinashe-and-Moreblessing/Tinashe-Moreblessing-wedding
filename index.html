@@ -163,9 +163,11 @@ h2{font:500 clamp(2.5rem,7vw,4.7rem)/.98 Georgia,"Times New Roman",serif;margin:
     if(seatsEl){var n=reservedSeats; if(seats){var requested=parseInt(seats,10); if(isFinite(requested)&&requested>0) n=requested;} if(isFinite(n)&&n>0) seatsEl.textContent='We have reserved '+n+' seat'+(n===1?'':'s')+' in your honour.';}
 
     var name=displayGuest || 'Guest';
-    var phone='263718092335';
-    var yesText='Hello Tinashe & Moreblessing, I am '+name+'. I would like to confirm my attendance for your wedding on 19 December 2026.';
-    var noText="Hello Tinashe & Moreblessing, I am "+name+". Unfortunately, I won't be able to attend your wedding on 19 December 2026. Wishing you both a beautiful wedding and a lifetime of happiness.";
+    var phone='263772631351';
+    var pronoun = ((isFinite(reservedSeats) && reservedSeats > 1) ? 'we' : 'I');
+    var possessive = ((isFinite(reservedSeats) && reservedSeats > 1) ? 'our' : 'my');
+    var yesText="Hello Mr Mundau, It's "+name+", "+pronoun+" would like to confirm "+possessive+" attendance for Tinashe and Moreblessing's wedding on 19 December 2026.";
+    var noText="Hello Mr Mundau, It's "+name+", Unfortunately "+pronoun+" won't be able to attend Tinashe and Moreblessing's wedding on 19 December 2026. However, we wish both of them a beautiful wedding and a lifetime of happiness.";
     var yes=document.getElementById('rsvpYes'), no=document.getElementById('rsvpNo');
     if(yes) yes.href='https://wa.me/'+phone+'?text='+encodeURIComponent(yesText);
     if(no) no.href='https://wa.me/'+phone+'?text='+encodeURIComponent(noText);
